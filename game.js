@@ -5,10 +5,10 @@ const missionNameDisplay = document.getElementById("mission-name");
 const coinsDisplay = document.getElementById("coins");
 
 // Sons
-const typingSound = new Audio('assets/sound/typing.mp3');
-const successSound = new Audio('assets/sound/success.mp3');
-const errorSound = new Audio('assets/sound/error.mp3');
-const missionSound = new Audio('assets/sound/mission.mp3');
+const typingSound = new Audio('./assets/sound/typing.mp3');
+const successSound = new Audio('./assets/sound/success.mp3');
+const errorSound = new Audio('./assets/sound/error.mp3');
+const missionSound = new Audio('./assets/sound/mission.mp3');
 
 // Variáveis do jogo
 let level = 1;
@@ -23,7 +23,7 @@ const missions = [
     { name: "Invadir banco de dados corporativo", reward: 200, difficulty: 3 }
 ];
 
-// Comandos
+// Comandos disponíveis
 const commands = {
     help: "Comandos disponíveis:\n - help: Mostra os comandos\n - hack: Inicia a missão atual\n - clear: Limpa a tela\n - status: Mostra o progresso\n - shop: Exibe itens disponíveis para compra",
     clear: "Tela limpa.",
@@ -46,12 +46,24 @@ function processCommand(command) {
     } else if (commands[lowerCaseCommand]) {
         appendOutput(`> ${command}`);
         appendOutput(commands[lowerCaseCommand]);
+    } else if (lowerCaseCommand === "status") {
+        showStatus();
     } else {
         appendOutput(`> ${command}`);
         appendOutput("Comando não reconhecido. Digite 'help' para ver os comandos.");
+        errorSound.play();
     }
 
     commandInput.value = "";
+}
+
+// Mostrar status do jogador
+function showStatus() {
+    appendOutput("===== Status do Jogador =====");
+    appendOutput(`Nível: ${level}`);
+    appendOutput(`Missões concluídas: ${missionsCompleted}`);
+    appendOutput(`Moedas: ${coins}₿`);
+    appendOutput("=============================");
 }
 
 // Iniciar missão
@@ -92,7 +104,7 @@ function attemptHack() {
     updateStats();
 }
 
-// Atualizar status
+// Atualizar status no jogo
 function updateStats() {
     levelDisplay.innerText = level;
     coinsDisplay.innerText = coins + "₿";
