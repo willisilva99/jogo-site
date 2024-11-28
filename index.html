@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Sim: Nova Era</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="terminal">
+            <div id="header">
+                <img src="assets/images/hacker-avatar.png" alt="Avatar" id="avatar">
+                <div id="stats">
+                    <p>Missão: <span id="mission-name">Aguardando...</span></p>
+                    <p>Nível: <span id="level">1</span></p>
+                    <p>Moeda: <span id="coins">100</span>₿</p>
+                </div>
+            </div>
+            <div id="output"></div>
+            <input type="text" id="command-input" placeholder="Digite um comando..." autofocus>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
